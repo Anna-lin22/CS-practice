@@ -38,71 +38,71 @@
 #### Крок 1. Знайомство з таблицею даних
 На вступному екрані наведено приклад таблиці **employees** з полями `userid`, `first_name`, `last_name`, `department`, `salary`, `auth_tan`, на прикладі якої виконуватимуться подальші завдання:
 
-![employees_table](1_sql.png)
+![employees_table](images/1_sql.png)
 
 Перше практичне завдання — отримати відділ (**department**) співробітника **Bob Franco**, маючи повні адміністративні права (без потреби автентифікації). Виконуємо запит `SELECT department FROM Employees WHERE userid=96134` і отримуємо результат **Marketing**:
 
-![select_department](2_sql.png)
+![select_department](images/2_sql.png)
 
 #### Крок 2. DML — зміна даних (UPDATE)
 Переходимо до модуля **Data Manipulation Language**. Завдання — змінити відділ співробітника **Tobi Barnett** на **'Sales'**, використовуючи оператор `UPDATE` з обов'язковою умовою `WHERE` (щоб не зачепити всіх співробітників одразу):
 
-![dml_task](3_sql.png)
+![dml_task](images/3_sql.png)
 
 Виконуємо запит `UPDATE Employees SET department = 'Sales' WHERE userid = 89762` — завдання зараховано, відділ співробітника успішно змінено:
 
-![dml_success](4_sql.png)
+![dml_success](images/4_sql.png)
 
 #### Крок 3. DDL — зміна структури таблиці (ALTER)
 У модулі **Data Definition Language** потрібно додати новий стовпець **"phone"** (`varchar(20)`) до таблиці `employees`. Виконуємо `ALTER TABLE employees add phone varchar(20)` — структуру таблиці успішно змінено:
 
-![ddl_success](5_sql.png)
+![ddl_success](images/5_sql.png)
 
 #### Крок 4. DCL — керування правами доступу (GRANT)
 У модулі **Data Control Language** завдання — надати повні права на таблицю **`grant_rights`** користувачу **`unauthorized_user`**. Виконуємо запит `GRANT ALL PRIVILEGES ON grant_rights TO unauthorized_user` — права успішно надано:
 
-![dcl_success](6_sql.png)
+![dcl_success](images/6_sql.png)
 
 #### Крок 5. Рядкова (String) SQL-ін'єкція
 Урок демонструє, що запит будується конкатенацією рядків: `"SELECT * FROM user_data WHERE first_name = 'John' AND last_name = '" + lastName + "'"`. Використовуючи випадаючі списки форми, потрібно підібрати умову, яка поверне всіх користувачів:
 
-![string_injection_task](7_sql.png)
+![string_injection_task](images/7_sql.png)
 
 Підставивши умову `or '1' = '1'` у поле прізвища, отримуємо повний список користувачів таблиці `user_data` — фільтрація за іменем/прізвищем повністю обійдена, оскільки вираз `'1'='1'` завжди істинний:
 
-![string_injection_success](8_sql.png)
+![string_injection_success](images/8_sql.png)
 
 #### Крок 6. Числова (Numeric) SQL-ін'єкція
 Далі запит будується шляхом конкатенації **чисел**: `"SELECT * FROM user_data WHERE login_count = " + Login_Count + " AND userid = " + User_ID`. Потрібно визначити, яке саме поле (**Login_Count** чи **User_Id**) вразливе, і підставити відповідне значення:
 
-![numeric_injection_task](9_sql.png)
+![numeric_injection_task](images/9_sql.png)
 
 Ввівши в поле **User_Id** значення `0 OR '1'='1'`, отримуємо повний список усіх користувачів разом з номерами кредитних карток (**CC_NUMBER**) — умова `WHERE` знову стає істинною для кожного рядка:
 
-![numeric_injection_success](10_sql.png)
+![numeric_injection_success](images/10_sql.png)
 
 #### Крок 7. Порушення конфіденційності (Compromising Confidentiality)
 У наступному уроці потрібно застосувати рядкову ін'єкцію в реальному сценарії: під обліковим записом John Smith (TAN `3SL99A`) переглянути зарплати **всіх** колег, хоча система мала б показувати лише власні дані:
 
-![confidentiality_task](11_sql.png)
+![confidentiality_task](images/11_sql.png)
 
 Ввівши в обидва поля форми (**Employee Name** та **Authentication TAN**) умову `' OR '1'='1'`, обходимо перевірку імені та TAN і отримуємо повний список співробітників з їхніми зарплатами — конфіденційність даних успішно порушено:
 
-![confidentiality_success](12_sql.png)
+![confidentiality_success](images/12_sql.png)
 
 #### Крок 8. Порушення цілісності через query chaining
 Наступний урок демонструє техніку **ланцюжків запитів (query chaining)** за допомогою метасимвола `;`, що дозволяє додати до основного запиту ще один, повністю окремий SQL-оператор:
 
-![integrity_task](13_sql.png)
+![integrity_task](images/13_sql.png)
 
 У поле **Employee Name** вводимо `Smith'; UPDATE employees SET salary = '999999999' WHERE last_name = 'Smith' --`. Перший запит (`SELECT`) закривається лапкою, одразу після чого виконується власний `UPDATE`, а `--` коментує залишок оригінального запиту. В результаті зарплата John Smith змінена на найвищу серед усіх співробітників:
 
-![integrity_success](14_sql.png)
+![integrity_success](images/14_sql.png)
 
 #### Крок 9. Порушення доступності (Compromising Availability)
 Останній урок цього циклу — компрометація **доступності** даних. У системі є таблиця **`access_log`**, яка фіксує всі дії користувача. Використовуючи ту саму техніку query chaining, потрібно видалити цю таблицю повністю, щоб приховати сліди своєї активності:
 
-![availability_task](15_sql.png)
+![availability_task](images/15_sql.png)
 
 У поле **Employee Name** вводимо `1';DROP TABLE access_log--`. Перший запит завершується крапкою з комою, після чого виконується команда `DROP TABLE`, яка повністю знищує таблицю логів, а `--` прибирає залишок оригінального синтаксису. Завдання успішно виконано — таблиця `access_log` видалена, доступність даних (журналу дій) порушено.
 

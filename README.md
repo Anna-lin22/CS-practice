@@ -18,7 +18,7 @@ CS-practice/
 | :--- | :--- | :--- |
 | [A01 — Hijack Session](webgoat/A01BrokenAccessControl_HijackSession.md) | Broken Access Control | Передбачення значення `hijack_cookie` для перехоплення чужої сесії |
 | [A01 — IDOR](webgoat/A01BrokenAccessControl_IDOR.md) | Broken Access Control | Перегляд і редагування чужого профілю через прямі об'єктні посилання |
-| [A03 — SQL Injection](webgoat/A03InjectionSQL.md) | Injection | Порушення конфіденційності, цілісності та доступності через SQL-ін'єкції (String, Numeric, DML/DDL/DCL, query chaining) |
+| [A03 — SQL Injection](webgoat/A03InjectionSQL(intro).md) | Injection | Порушення конфіденційності, цілісності та доступності через SQL-ін'єкції (String, Numeric, DML/DDL/DCL, query chaining) |
 
 ## Juice Shop
 

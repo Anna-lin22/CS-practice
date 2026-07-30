@@ -7,7 +7,8 @@
 ```
 CS-practice/
 ├── webgoat/       # Лабораторні роботи на основі OWASP WebGoat
-└── juice_shop/    # Лабораторні роботи на основі OWASP Juice Shop
+├── juice_shop/    # Лабораторні роботи на основі OWASP Juice Shop
+└── DeathNote/     # Проходження CTF-машини Deathnote
 ```
 
 ## WebGoat
@@ -29,9 +30,23 @@ CS-practice/
 | :--- | :--- |
 | [OWASP Juice Shop — звіт](juice_shop/OWASP_JuiceShop_report.md) | Score Board, Missing Encoding, Error Handling, вхід під адміном (SQLi), Poison Null Byte, Easter Egg, DOM XSS, Confidential Document, View Basket (IDOR через Burp Suite) |
 
+## DeathNote: 1
+
+Навчальна CTF-машина з VulnHub, стилізована під аніме *Death Note*. Завдання передбачає проведення розвідки цільової системи, отримання початкового доступу та підвищення привілеїв до `root`.
+
+| Звіт | Опис |
+| :--- | :--- |
+| [DeathNote: 1 — CTF write-up](DeathNote/Deathnote_CTF_report.md) | Розвідка та сканування цільової системи, пошук інформації на вебсервері, отримання облікових даних, SSH-доступ до користувача `l`, підвищення привілеїв та отримання `root` |
+
+
 ## Інструменти
 
-* **Kali Linux** — робоче середовище
-* **Docker** — запуск вразливих застосунків (WebGoat, Juice Shop)
+* **Kali Linux** — робоче середовище для виконання лабораторних робіт і CTF
+* **Docker** — запуск вразливих навчальних застосунків (WebGoat, Juice Shop)
+* **Nmap** — сканування портів і визначення запущених мережевих сервісів
 * **Burp Suite** — перехоплення та модифікація HTTP-запитів (Proxy, Repeater, Intruder)
-* **CyberChef** — декодування (Base64, ROT13 тощо)
+* **SSH** — віддалене підключення до цільової системи
+* **CyberChef** — декодування та аналіз даних (Base64, ROT13 тощо)
+* **Netdiscover** — виявлення активних хостів у локальній мережі
+* **Hydra** — автоматизований перебір облікових даних для мережевих сервісів
+* **Wget** — завантаження файлів із вебресурсів

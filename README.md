@@ -54,7 +54,7 @@ CS-practice/
 
 | Звіт | Опис |
 | :--- | :--- |
-| [Suricata IDS — звіт](suricata/Suricata_IDS_report.md) | Встановлення Suricata через PPA, налаштування af-packet та HOME_NET, оновлення правил (suricata-update), перевірка на testmynids.org, написання власних правил (local.rules), аналіз помилок синтаксису сигнатур, перевірка алертів у fast.log/eve.json |
+| [Suricata IDS — звіт](Suricata/Suricata_IDS_report.md) | Встановлення Suricata через PPA, налаштування af-packet та HOME_NET, оновлення правил (suricata-update), перевірка на testmynids.org, написання власних правил (local.rules), аналіз помилок синтаксису сигнатур, перевірка алертів у fast.log/eve.json |
 
 ## Інструменти
 
